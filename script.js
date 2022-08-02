@@ -31,7 +31,14 @@ function playRound(playerSelection, computerSelection){
 
 }
 
-
+function game(){
+    alert('Welcome to Rock-Paper-Scissors')
+    let playerSelection;
+    for(i=1;i<=5;i++){
+        playerSelection = prompt('Enter your selection: ');
+        console.log(playRound(playerSelection,getComputerChoice()));
+    }
+}
 
 
 
