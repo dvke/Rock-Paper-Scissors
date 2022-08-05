@@ -1,3 +1,7 @@
+let playerSelection;
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice(){
     // store options in array
     const options = ['rock','paper','scissors'];
@@ -18,11 +22,13 @@ function playRound(playerSelection, computerSelection){
         case (playerSelection == 'rock' && computerSelection == 'scissors'):
         case (playerSelection == 'paper' && computerSelection == 'rock'):
         case (playerSelection == 'scissors' && computerSelection == 'paper'):
-            return 'You win!';
+            playerScore+=1;
+            return 'You win this round!';
         case (playerSelection == 'rock' && computerSelection == 'paper'):
         case (playerSelection == 'paper' && computerSelection == 'scissors'):
         case (playerSelection == 'scissors' && computerSelection == 'rock'):
-            return 'You Lose!';
+            computerScore+=1;
+            return 'You Lost this round!';
         case(playerSelection == computerSelection):
             return 'Draw!';
         default:
@@ -33,11 +39,27 @@ function playRound(playerSelection, computerSelection){
 
 function game(){
     alert('Welcome to Rock-Paper-Scissors')
-    let playerSelection;
-    for(i=1;i<=5;i++){
+    while(playerScore < 5 || computerScore < 5){
         playerSelection = prompt('Enter your selection: ');
+        if(playerSelection==null){
+            console.log('Game cancelled');
+            break;   
+        }
         console.log(playRound(playerSelection,getComputerChoice()));
+        console.log(`Your score = ${playerScore}`);
+        console.log(`Computer score = ${computerScore}`);
+
+        if(computerScore === 5){
+            console.log('You lost the game!');
+            break;
+        }
+        else if(playerScore === 5){
+            console.log('You won the game!');
+            break;
+        }
     }
+
+   
 }
 
 
