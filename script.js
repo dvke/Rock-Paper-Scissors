@@ -2,6 +2,14 @@ let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
 
+
+const options = document.querySelectorAll('.option');
+
+// create click even for each option
+[...options].forEach((option)=>option.addEventListener('click', (e)=>playRound(e.target.id, getComputerChoice())));
+
+
+
 function getComputerChoice(){
     // store options in array
     const options = ['rock','paper','scissors'];
@@ -23,22 +31,26 @@ function playRound(playerSelection, computerSelection){
         case (playerSelection == 'paper' && computerSelection == 'rock'):
         case (playerSelection == 'scissors' && computerSelection == 'paper'):
             playerScore+=1;
-            return 'You win this round!';
+            console.log ('You win this round!');
+            break;
         case (playerSelection == 'rock' && computerSelection == 'paper'):
         case (playerSelection == 'paper' && computerSelection == 'scissors'):
         case (playerSelection == 'scissors' && computerSelection == 'rock'):
             computerScore+=1;
-            return 'You Lost this round!';
+            console.log('You Lost this round!');
+            break;
         case(playerSelection == computerSelection):
-            return 'Draw!';
+            console.log('Draw!');
+            break;
         default:
-            return 'Invalid Input';
+            console.log('Invalid Input');
+            break;
     }
 
 }
 
-function game(){
-    alert('Welcome to Rock-Paper-Scissors')
+function playGame(){
+    alert('Welcome to Rock-Paper-Scissors');
     while(playerScore < 5 || computerScore < 5){
         playerSelection = prompt('Enter your selection: ');
         if(playerSelection==null){
